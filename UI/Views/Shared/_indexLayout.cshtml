@@ -1,0 +1,36 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+	<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/ProjectStyles/layout.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container-fluid">
+		<div class="row">
+		    @Html.Partial("~/Views/Partial/NavbarHeader.cshtml")
+		</div>
+		<div class="row">
+			<div class="col-md-8" style="padding:0px;">
+				<div class="advertisement">
+					 <header class="advertisement-header">
+						<h1 class="advertisement-text ">Hastane işlemlerinizin takibi bir tık kadar kolay.</h1>
+					 </header>
+				</div>
+			</div>
+			<div class="col-md-4" >
+				@RenderBody()
+			</div>
+		</div>
+    </div>
+</body>
+</html>
+<script src="~/Scripts/jquery-1.9.1.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>

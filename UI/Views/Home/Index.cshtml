@@ -1,0 +1,18 @@
+﻿
+@{
+	ViewBag.Title = "Hastane Otomasyonu";
+	Layout = "~/Views/Shared/_indexLayout.cshtml";
+}
+
+<div class="index-form">
+	<h2 id="formTitle">Giriş yap</h2>
+	<span>veya <a href="javascript:toggleForm()" class="signInOrOut">bir hesap oluşturun</a></span>
+	<div class="loginForm">
+		@Html.Partial("~/Views/Partial/SignInForm.cshtml")
+	</div>
+
+	<div class="signUpForm">
+		@Html.Partial("~/Views/Partial/SignUpForm.cshtml")
+	</div>
+</div>
+<script src="~/Scripts/ProjectScripts/SignUpInToggle.js"></script>

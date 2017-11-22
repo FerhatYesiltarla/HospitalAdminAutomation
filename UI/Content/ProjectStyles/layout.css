@@ -1,0 +1,46 @@
+﻿body {
+}
+
+.navbar-fixed-top a{
+		color: white;
+	}
+
+.navbar-right a{
+	color: #000;
+}
+.advertisement {
+	background-color: #61082b;
+	padding-top: 80px;
+	height: -webkit-fill-available;
+	padding-left: calc(1440px * (2 / 24));
+	padding-right: calc(1440px * (2 / 24));
+}
+
+.advertisement-header {
+	margin-top: auto;
+	margin-bottom: auto;
+}
+.advertisement-text {
+	color: #b4d0e7;
+	font-size: calc(40px + 31 * ((100vw - 375px) / 1065));
+	font-weight: 600;
+}
+
+.form-horizontal {
+	margin-top: 20px;
+}
+
+/*SignIn and SignUp forms*/
+.index-form {
+	padding-top: 80px;
+	padding-left: calc(1440px * (2 / 80));
+	padding-right: calc(1440px * (2 / 80));
+}
+
+.form-control, .btn{
+	border-radius: 0px;
+}
+
+.signUpForm {
+    display: none;
+}
