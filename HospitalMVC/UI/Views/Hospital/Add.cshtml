@@ -1,0 +1,78 @@
+﻿<div class="row">
+	<div class="col-md-offset-2">
+		<span class="crudTitle">Hastane Ekleme</span>
+	</div>
+	<div class="col-md-offset-2 col-md-8">
+		<form class="form-horizontal" action="/hospital/add" method="post">
+			<div class="form-group">
+				<div class="col-sm-12">
+					<input type="text" class="form-control" id="name" placeholder="Hastane adı" name="Name">
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-12">
+					<input type="text" class="form-control" id="phoneNumber" placeholder="Telefon numarası" name="PhoneNumber">
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-12">
+					<select class="form-control" id="cities">
+						<option value="-1" selected>Lütfen il seçiniz</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-12">
+					<select class="form-control" id="towns" name="townId">
+						<option value="-1" id="townsSelect" selected>Lütfen ilçe seçiniz</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-12">
+					<button type="submit" class="btn btn-large btn-block btn-primary">Ekle</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+
+<script>
+	$.ajax({
+		type: "Post",
+		url: "/user/cities",
+		success: function (response) {
+			$.each(response, function (key, value) {				
+				$("#cities").append("<option value= " + value.Id + ">" + value.Name + "</option>");
+			});
+		},
+		error: function (err) {
+			alert("Hata  100(Hospital - Add)" + err);
+		}
+	});
+
+	$("#cities").change(function () {		
+		$.ajax({
+			type: "Post",
+			url: "/user/towns/?CityId=" + $(this).val(),
+			beforeSend: function () {
+				$("#towns").empty();
+			},
+			success: function (response) {
+				if (response.length == 0) {
+					$("#towns").append("<option value=-1>İlçe bulunamadı</option>");
+				}
+				else {
+					$.each(response, function (key, value) {
+						$("#towns").append("<option value= " + value.Id + ">" + value.Name + "</option>");
+					});
+				}
+			},
+			error: function (err) {
+				alert("Hata 101(Hospital - Add)" + err);
+			}
+		});
+	});
+
+
+</script>

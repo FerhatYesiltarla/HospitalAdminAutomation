@@ -1,0 +1,26 @@
+﻿<h1>{{Title}}</h1>
+
+<form ng-controller="sendAppointmentCtrl">
+	<div class="form-group">
+		<label for="Name">Randevu Tarihi :</label>
+		<input type="date" class="form-control" name="Name" ng-model="data.Date">
+	</div>
+	<div class="form-group">
+		<label for="PoliclinicId">Poliklinik :</label>
+		<select class="form-control" id="PoliclinicId" name="PoliclinicId" ng-model="data.PoliclinicId">
+			<option ng-repeat="policlinic in Policlinics.data" value={{policlinic.Id}} id="policlinicsSelect">
+				{{policlinic.Name}}
+			</option>
+		</select>
+	</div>
+	<div class="form-group">
+		<label for="StaffId">Doktor :</label>
+		<select class="form-control" id="StaffId" name="StaffId" ng-model="data.StaffId">
+			<option ng-repeat="doctor in Doctors.data" value={{doctor.Id}} id="doctorsSelect">
+				{{doctor.Name}}
+			</option>
+		</select>
+	</div>	
+	<button class="btn btn-default" ng-click="send()">Gönder</button>
+</form>
+

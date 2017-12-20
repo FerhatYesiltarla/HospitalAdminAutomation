@@ -1,0 +1,7 @@
+﻿<h1>{{Title}}</h1>
+
+<ul class="list-group">
+	<li ng-repeat="Appointment in Appointments.data" class="list-group-item">
+		<b>Tarih :</b> {{Appointment.Date}}  <b>Poliklinic :</b> {{Appointment.Policlinic.Name}} <b>Personel :</b> {{Appointment.Staff.Name}}
+	</li>
+</ul>

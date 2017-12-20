@@ -1,0 +1,44 @@
+﻿
+@{
+	Layout = null;
+}
+
+@model List<DAL.ORM.Entity.Staff>
+
+<div class="row">
+
+</div>
+<div class="table-container" style="margin-top:35px;">
+	<table class="table table-filter">
+		<tbody>
+			@foreach (var item in Model)
+			{
+				<tr data-status="pagado">
+					<td></td>
+					<td>
+						<a href="javascript:;" class="star">
+							<i class="glyphicon glyphicon-star"></i>
+						</a>
+					</td>
+					<td>
+						<div class="media">
+							<a href="#" class="pull-left">
+								<img src="~/Assets/images/png/policlinic.png" width="45px" />
+							</a>
+							<div class="media-body">
+								<span class="media-meta pull-right">@item.InsertDate</span>
+								<h4 class="title">
+									@item.Name @item.Surname
+									<span class="pull-right pagado">@item.Email</span>
+								</h4>
+								<p class="summary">@item.Address</p>
+								<p class="summary">Cep Tel : @item.MobilePhone</p>
+								<p class="summary">Ev Tel : @item.HomePhone</p>
+							</div>
+						</div>
+					</td>
+				</tr>
+            }
+		</tbody>
+	</table>
+</div>

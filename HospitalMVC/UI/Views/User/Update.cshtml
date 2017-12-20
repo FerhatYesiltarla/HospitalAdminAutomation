@@ -1,0 +1,60 @@
+﻿<div class="row">
+	<div class="col-md-offset-2">
+		<span class="crudTitle">Kullanıcı Güncelleme</span>
+	</div>
+	<div class="col-md-offset-2 col-md-8">
+		<form class="form-horizontal" action="/user/update" method="post">
+			<input type="hidden" name="id" value="" id="id" />
+			<input type="hidden" name="Role" value="" id="role" />
+			<div class="form-group">
+				<div class="col-sm-12">
+					<input type="text" class="form-control" id="name" placeholder="Ad" name="Name">
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-12">
+					<input type="text" class="form-control" id="lastName" placeholder="Soyad" name="LastName">
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-12">
+					<input type="email" class="form-control" id="email" placeholder="Email" name="Email">
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-12">
+					<input type="text" class="form-control" id="password" placeholder="Şifre" name="Password">
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-12">
+					<button type="submit" class="btn btn-large btn-block btn-info">Güncelle</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+
+<script>
+	$.ajax({
+		type: "Post",
+		url: "/user/userget/?id=" + btnID,
+		success: function (response) {
+			if (response != null) {
+				$("#id").val(btnID);
+				$("#role").val(response.Role);
+				$("#name").val(response.Name);
+				$("#lastName").val(response.Lastname);
+				$("#email").val(response.Email);
+				$("#password").val(response.Password);
+			}
+			else {
+				alert("Response null");
+			}
+
+		},
+		error: function (err) {
+			alert("Hata 100(User - Update) : " + err);
+		}
+	});
+</script>

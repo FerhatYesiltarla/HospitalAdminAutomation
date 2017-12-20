@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html ng-app="BasicHttpAuthExample">
+	<head>
+		<meta charset="utf-8" />
+		<title>AngularJS Projesi</title>
+		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
+
+		<style>
+			.ul-menu {
+				list-style-type: none;
+			}
+
+			.li-menu {
+				list-style-type: none;
+				background-color: #99e4e4;
+				padding: 10px;
+				margin-bottom: 5px;				
+			}
+
+			.li-menu:hover {
+				background-color: #62c7c7;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-push-2 col-md-8">
+					<h1 class="page-header">Hospital kullanıcı ekranı</h1>
+					<ul class="ul-menu">
+						<li class="li-menu"><a href="/register">Kayıt ol</a></li>
+						<li class="li-menu"><a href="/appointments">randevular</a></li>
+						<li class="li-menu"><a href="/getAppointment">randevu al</a></li>
+						<li class="li-menu"><a href="/contact">iletişim</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="row" style="background-color:#99e4e4; padding-top:20px; padding-bottom:20px;">
+				<div class="col-md-push-2 col-md-8">
+					<div ng-view></div>
+				</div>
+			</div>
+		</div>
+		<div class="credits text-center">
+			<p>
+				<a href="#">AngularJs Projesi - Ferhat YEŞİLTARLA</a>
+			</p>
+		</div>
+		<script src="//code.jquery.com/jquery-2.0.3.min.js"></script>
+		<script src="//code.angularjs.org/1.2.20/angular.js"></script>
+		<script src="//code.angularjs.org/1.2.20/angular-route.js"></script>
+		<script src="//code.angularjs.org/1.2.13/angular-cookies.js"></script>
+		<script src="Scripts/app.js"></script>
+		<script src="Authentication/services.js"></script>
+		<script src="Authentication/controllers.js"></script>
+		<script src="Scripts/controllers.js"></script>
+	</body>
+</html>

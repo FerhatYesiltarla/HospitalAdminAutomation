@@ -1,0 +1,60 @@
+﻿<div class="row">
+	<div class="col-md-offset-2">
+		<span class="crudTitle">Poliklinik Güncelleme</span>
+	</div>
+	<div class="col-md-offset-2 col-md-8">
+		<form class="form-horizontal" action="/policlinic/update" method="post">
+			<input type="hidden" name="id" value="" id="id" />
+			<div class="form-group">
+				<div class="col-sm-12">
+					<input type="text" class="form-control" id="name" placeholder="Poliklinik adı" name="Name">
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-12">
+					<select class="form-control" id="hospitals" name="hospitalId">						
+					</select>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-12">
+					<button type="submit" class="btn btn-large btn-block btn-info">Güncelle</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+
+<script>
+	$.ajax({
+		type: "Post",
+		url: "/user/hospitals",
+		success: function (response) {
+			$.each(response, function (key, value) {
+				$("#hospitals").append("<option value= " + value.Id + ">" + value.Name + "</option>");
+			});
+
+			$.ajax({
+				type: "Post",
+				url: "/policlinic/policlinic/?id=" + btnID,
+				success: function (response) {
+					if (response != null) {
+						$("#id").val(btnID);
+						$("#name").val(response.Name);
+						$("select[id=hospitals]").val(response.Hospital.Id);
+					}
+					else {
+						alert("Response null");
+					}
+
+				},
+				error: function (err) {
+					alert("Hata 101(Policlinic - Update) : " + err);
+				}
+			});
+		},
+		error: function (err) {
+			alert("Hata 100(Policlinic - Update) : " + err);
+		}
+	});
+</script>

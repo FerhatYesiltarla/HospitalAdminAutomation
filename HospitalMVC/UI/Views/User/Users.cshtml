@@ -1,0 +1,118 @@
+﻿
+@{
+	Layout = null;
+}
+
+@model List<DAL.ORM.Entity.User>
+
+<div class="row">
+	<div class="col-md-2">
+		
+	</div>
+</div>
+<div class="table-container" style="margin-top:35px;">
+	<table class="table table-filter">
+		<tbody>
+			@foreach (var item in Model)
+			{
+				string shortName = "";
+				string title = "";
+
+				shortName = item.Name[0].ToString() + item.Lastname[0].ToString();
+
+				if (item.Role == "1")
+				{
+					title = "Admin";
+				}
+				else if(item.Role == "2")
+				{
+					title = "Kullanıcı";
+				}
+				else
+				{
+					title = "Undefined";
+				}
+
+				<tr data-status="pagado">
+					<td>
+						@if (item.Id.ToString() != HttpContext.Current.User.Identity.Name.Split('-')[0])
+						{
+							<button type="button" class="btn btn-default btnList" id=@item.Id>
+								<span class="glyphicon glyphicon-cog"></span>
+							</button>
+						}
+					</td>
+					<td>
+						<a href="javascript:;" class="star">
+							<i class="glyphicon glyphicon-star"></i>
+						</a>
+					</td>
+					<td>
+						<div class="media">
+							<a href="#" class="pull-left">
+								<img src="~/Assets/images/png/hospital.png" width="45px" />
+							</a>
+							<div class="media-body">
+								<span class="media-meta pull-right">@item.InsertDate</span>
+								<h4 class="title">
+									@item.Name @item.Lastname
+									<span class="pull-right pagado">(@shortName)</span>
+								</h4>
+								<p class="summary">@item.Email - @title </p>
+							</div>
+						</div>
+					</td>
+				</tr>
+            }
+		</tbody>
+	</table>
+</div>
+
+@Html.Partial("~/Views/Partial/CrudProcessPopUp.cshtml")
+
+<script src="~/Scripts/EasyTableFilter/easyTableFilter.js"></script>
+
+<script>
+	$('#btnUpdate').click(function () {
+		popUpDismiss();
+		crudModalShow($(this).attr('id'));
+	});
+
+	$('#btnDelete').click(function () {
+		popUpDismiss();
+		$.ajax({
+			type: "Post",
+			url: "/user/delete/?userId=" + btnID,
+			beforeSend: function () {
+
+			},
+			success: function (response) {
+				alert("Kullanıcı silindi");
+				location.reload();
+			},
+			error: function (err) {
+				alert("Hata 100(User - Users) : " + err);
+			}
+		});
+	});
+
+	var modal = $('#processModal');
+	var close = $('.close');
+	var crudContent = $('#crud-content');
+
+	function crudModalShow(id) {
+		if (id == 'btnUpdate') {
+			$('.bg-line').css({ 'background-color': '#5bc0de' });
+			crudContent.load('@Url.Action("Update", "User")');
+		}
+		else {
+			$('.bg-line').css({ 'background-color': 'red' });
+		}
+		modal.css({ 'display': 'block' });
+	}
+
+	close.on('click', function () {
+		modal.css({ 'display': 'none' });
+	});
+
+</script>
